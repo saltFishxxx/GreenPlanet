@@ -1,0 +1,61 @@
+<style>
+    .margin0 {
+        margin-left: 0;
+    }
+</style>
+<form class="layui-form" action="http://localhost/GreenNew/news/addNews">
+    <div class="layui-form-item">
+        <label class="layui-form-label">新闻标题</label>
+        <div class="layui-input-block layui-col-md4 margin0">
+            <input type="text" name="newsName" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">新闻类型</label>
+        <div class="layui-input-block layui-col-md2 margin0">
+            <select name="newsType" lay-verify="required" >
+                <option value="0">农业</option>
+                <option value="1">搞笑</option>
+                <option value="2">环保</option>
+                <option value="3">政策</option>
+                <option value="4">健康</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">新闻内容</label>
+        <div class="layui-input-block layui-col-md8 margin0">
+            <textarea name="newsContent" placeholder="请输入内容" class="layui-textarea" style="height: 400px;"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block layui-col-md8" style="text-align: center;">
+            <button id="submit" class="layui-btn" lay-submit lay-filter="formDemo" >新闻上传</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    //Demo
+    // layui.use('form', function(){
+    //     var form = layui.form;
+    //
+    //     //监听提交
+    //     form.on('submit(formDemo)', function(data){
+    //         layer.msg(JSON.stringify(data.field));
+    //         return false;
+    //     });
+    // });
+    $("#submit").click(function () {
+        $.get("news/addNews", $(".layui-form").serialize(), function (data) {
+            alert(1);
+            if (data.status) {
+                alert("上传成功");
+            } else {
+                alert("上传失败");
+            }
+        });
+    });
+
+
+</script>
